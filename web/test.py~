@@ -1,0 +1,7 @@
+from playsound import playsound
+
+def main():
+    playsound('/System/Library/Sounds/Blow.aiff')
+
+if __name__=="__main__":
+    main()
