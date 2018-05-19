@@ -18,60 +18,27 @@ app.get('/', function (req, res) {
   // )
 });
 
-app.get('/upcoming', function (req, res) {
-	if (!('keyword' in req.query)) {
-		res.status(400).send("No keyword(s) provided")
-	}
-
-	var optionsObject = {
-    keyword: req.query.keyword,
-    startTime: new Date(1515817029529)
-  }
-
-  // googleTrends.interestOverTime(optionsObject).then(function(data) {
-  // 	res.send(data)
-  // 	}
-  // )
-});
-
-app.get('/news', function (req, res) {
-	if (!('topic' in req.query)) {
-		res.status(400).send("No topic(s) specificed")
-	}
-
-	axios.get('https://newsapi.org/v2/everything', {
-    params: {
-      q: req.query.topic,
-      apiKey: process.env.NEWS_API_KEY
-    }
-  })
-  .then(function(response) {
-    res.send(response.data)
-  })
-  .catch(function(error) {
-    console.log(error);
-  })
-
-})
 
 app.get('/fire', function (req, res) {
-  // if (!('topic' in req.query)) {
-  //   res.status(400).send("No topic(s) specificed")
-  // }
+  if (!('target' in req.query)) {
+    res.status(400).send("No target specificed")
+  }
 
-  console.log("FIRING")
+  var target = req.query.target
+  console.log("Firing with target: " + target)
 
   axios.get('http://192.168.1.68:5000', {
     params: {
-      q: "param"
+      target: target
     }
   })
   .then(function(response) {
-    res.send("It worked!")
+    res.send("Fired " + target)
     // res.send(response.data)
   })
   .catch(function(error) {
     console.log(error);
+    res.send("Target " + target + " not connected")
   })
 
 })
