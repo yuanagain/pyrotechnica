@@ -7,6 +7,7 @@ app = Flask(__name__)
 def index():
     playsound('/home/pi/webapp/completed.wav')
     print("ITS WORKING")
+    print("Yuan was here")
     return 'something'
 
 @app.route('/pyrotechnica')
