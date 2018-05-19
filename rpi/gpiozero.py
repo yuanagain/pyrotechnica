@@ -1,13 +1,3 @@
-
-C
-pCC
-D
-A
-A
-B
-B
-C
-A
-A
-A
-
+from gpiozero import Buzzer
+bz = Buzzer(3)
+bz.on()
