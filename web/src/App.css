@@ -398,7 +398,7 @@ position: fixed;
   height: 100%;
   width: 200%;
   z-index: -1;
-  background-size: auto 180%;
+  background-size: auto 140%;
   background-repeat: no-repeat;
   -webkit-animation-name: MOVE-BG;
   -webkit-animation-duration: 30s;

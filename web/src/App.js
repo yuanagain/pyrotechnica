@@ -6,6 +6,10 @@ import BackgroundImage from './components/BackgroundImage.js'
 import { __COMPONENT_STYLES__ } from './Styles.js'
 import { White } from './Colors.js'
 
+
+// https://emeraldcoastbyowner.com/blogimages/blog31508863253_gulf-breeze2.jpg
+const __BACKGROUND_IMAGE_URL__ = "https://www.gannett-cdn.com/-mm-/c5cb33fa1f894aa6e0b5df97512504daf89995ab/c=0-803-3456-2756&r=x1683&c=3200x1680/local/-/media/2017/04/04/NJGroup/AsburyPark/636269042204056588-fireworks-freehold-raceway-2016-Kenny-Murray.jpg"
+
 class Header extends Component {
   render() {
     return (  
@@ -76,7 +80,7 @@ class App extends Component {
             ...__COMPONENT_STYLES__.jumboContent,
             ...styles.content
           }}
-          background="url(https://emeraldcoastbyowner.com/blogimages/blog31508863253_gulf-breeze2.jpg)">
+          background={"url(" + __BACKGROUND_IMAGE_URL__ + ")"}>
           <Header/>
           <div style={styles.hline} />
           <div style={styles.body}>

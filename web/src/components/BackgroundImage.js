@@ -75,7 +75,7 @@ export default class BackgroundImage extends Component {
 
 BackgroundImage.defaultProps = {
   background: BACKGROUND_IMAGE_URL, 
-  backgroundColor: Black(0.5),
+  backgroundColor: Black(0.2),
   pan: 'pan8',
   contentStyle: {
     alignItems: 'stretch',
