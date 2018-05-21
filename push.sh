@@ -7,7 +7,7 @@ echo Commit comment: \"$ update further naming revisions in RPi\"
 echo "============ Uploading to GitHub ============"
 git add \.
 git status
-git commit -m "$update naming in RPi folder and add relay switching script for pin 7"
+git commit -m "$edited actrelay.pi"
 git push
 
 

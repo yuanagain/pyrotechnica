@@ -1,11 +1,15 @@
-int in1 = 7;
-void setup() {
-  pinMode(in1, OUTPUT);
-  digitalWrite(in1, HIGH);
-}
-void loop() {
-  digitalWrite(in1, LOW);
-  delay(3000);
-  digitalWrite(in1, HIGH);
-  delay(3000);
-}
+#!/usr/bin/env python
+
+import time
+
+import RPi.GPIO as GPIO
+
+
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(17, GPIO.OUT)
+GPIO.output(17, GPIO.LOW)
+
+time.sleep(0.25)
+
+GPIO.output(17, GPIO.HIGH)
+GPIO.cleanup()
