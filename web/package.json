@@ -14,6 +14,7 @@
     "node-arp": "^1.0.6",
     "node-libnmap": "^0.2.15",
     "path": "^0.12.7",
+    "portfinder": "^1.0.13",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
     "react-scripts": "1.1.4"

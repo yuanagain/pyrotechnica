@@ -6,8 +6,24 @@ var async = require('async')
 const nmap = require('libnmap');
 var arp = require('node-arp');
 const find = require('local-devices')
+const isPortTaken = require('./src/isPortTaken.js')
 
 const app = express();
+
+const testEndpoint = function(endpoint, callback) {
+  axios.get(endpoint)
+  .then(function (response) {
+    console.log("Endpoint live")
+    callback("We're live")
+  })
+  .catch(function (error) {
+    callback("We're dead")
+  })
+}
+
+const makeEndpoint = function(ip, port, endpoint) {
+  return 'http://' + ip + ':' + port + '/' + endpoint
+}
 
 // app.use(express.static(path.join(__dirname, 'build')));
 app.use(express.static(path.join(__dirname, 'client/build')));
@@ -20,7 +36,6 @@ app.get('/', function (req, res) {
   //  }
   // )
 });
-
 
 app.get('/fire', function (req, res) {
   if (!('target' in req.query)) {
@@ -79,11 +94,42 @@ app.get('/arp', function (req, res) {
 
 app.get('/scan', function (req, res) {
   find().then(function (devices) {
-    console.log(devices) 
+    console.log(devices)
     res.send(devices)
   }).catch(function(error) {
     res.send(500).send("Scanning error")
   })
+})
+
+app.get('/check', function (req, res) {
+  if (!('ip' in req.query)) {
+    res.status(400).send("No ip address specificed")
+    return
+  }
+
+  var ip = req.query.ip
+  var port = 5000
+
+  if ('port' in req.query) {
+    // override default if port is specified
+    port = req.query.port
+  }
+
+  axios.get(makeEndpoint(ip, port, 'pyrotechnica') )
+  .then(function (response) {
+    res.send({
+      live: true,
+      data: response.data
+    })
+  })
+  .catch(function (error) {
+    console.log(error)
+    res.send({
+      live: false
+    })
+  })
+  return
+
 })
 
 app.get('/scan_old', function (req, res) {

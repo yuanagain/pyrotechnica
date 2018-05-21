@@ -21,7 +21,7 @@ export default class BackgroundImage extends Component {
             flex: 1,
             backgroundColor: this.props.backgroundColor
           }}
-          class={"still"}
+          className={"still"}
           >
 
           <div 
@@ -30,7 +30,7 @@ export default class BackgroundImage extends Component {
               flex: 0,
               backgroundImage: this.props.background,
             }}
-            class={this.props.pan}
+            className={this.props.pan}
           />
           
           <div
