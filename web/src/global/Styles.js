@@ -1,6 +1,6 @@
 import {
   White
-} from './Colors.js'
+} from '../global/Colors.js'
 
 export const __COMPONENT_STYLES__ = {
 	jumbotron: {

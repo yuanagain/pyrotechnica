@@ -2,7 +2,7 @@
 // Yuan Wang
 
 import React, {Component } from 'react';
-import { Black } from '../Colors.js'
+import { Black } from '../global/Colors.js'
 
 const BACKGROUND_IMAGE_URL = 'url(https://www.scholastic.com/content/dam/teachers/Book%20List/2016-2017/books-about-oceans-book-list-4-3.jpg)'
 
