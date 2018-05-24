@@ -13,3 +13,7 @@ export function White(opacity) {
 	return 'rgba(255, 255, 255, ' + String(opacity)  + ')'
 }
 
+export function Red(opacity) {
+	return 'rgba(255, 102, 0, ' + String(opacity)  + ')'
+}
+

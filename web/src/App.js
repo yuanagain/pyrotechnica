@@ -11,6 +11,12 @@ import { White, PrimaryColor } from './global/Colors.js'
 import DeviceRow from './components/DeviceRow.js'
 import TimerRow from './components/TimerRow.js'
 import ScrollArea from 'react-scrollbar'
+import "react-circular-progressbar/dist/styles.css";
+import { __DUMMY_TIMERS__ } from './helpers/filler.js'
+import {
+  CSSTransition,
+  TransitionGroup,
+} from 'react-transition-group';
 
 // https://emeraldcoastbyowner.com/blogimages/blog31508863253_gulf-breeze2.jpg
 
@@ -130,15 +136,6 @@ class App extends Component {
               <h1 style={styles.whiteText}>
                 Body
               </h1>
-              <a 
-                textDecoration="none" 
-                style={styles.cleanLink} 
-                href='#' 
-                onClick={this.fire}>
-                <h2 style={styles.whiteText}>
-                  Fire me
-                </h2>
-              </a>
 
               <ScrollArea
                 speed={0.8}
@@ -146,12 +143,11 @@ class App extends Component {
                 contentStyle={styles.scrollContent}
                 horizontal={false}
                 >
-                <div>Some long content.</div>
-                <TimerRow/>
-                <TimerRow/>
-                <TimerRow/>
-                <TimerRow/>
-                <TimerRow/>
+                <TransitionGroup>
+                  { __DUMMY_TIMERS__.sort(function(a, b) { return a.delay - b.delay } ).map(
+                    (item, index) => <TimerRow {...item} key={item.name} />
+                  )}
+                </TransitionGroup>
 
               </ScrollArea>
               

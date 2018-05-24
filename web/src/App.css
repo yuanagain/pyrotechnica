@@ -631,6 +631,24 @@ position: fixed;
   -webkit-animation: none;-moz-animation: none;-ms-animation: none;animation: none;
 }
 
+.thing-enter {
+  opacity: 0.01;
+  transition: opacity 1s ease-in;
+}
+
+.thing-enter.thing-enter-active {
+  opacity: 1;
+}
+
+.thing-leave {
+  opacity: 1;
+  transition: opacity 1s ease-in;
+}
+
+.thing-leave.thing-leave-active {
+  opacity: 0.01;
+}
+
 @-webkit-keyframes pulse {to {box-shadow: 0 0 0 45px rgba(232, 76, 61, 0);}}
 @-moz-keyframes pulse {to {box-shadow: 0 0 0 45px rgba(232, 76, 61, 0);}}
 @-ms-keyframes pulse {to {box-shadow: 0 0 0 45px rgba(232, 76, 61, 0);}}
