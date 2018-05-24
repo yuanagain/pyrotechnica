@@ -82,8 +82,14 @@ export default class TimerRow extends Component {
 
     return (
         <CSSTransition
-          timeout={500}
-          classNames="fade"
+          in={this.state.lifecycle != 'dead'}
+          timeout={{
+            enter: 300,
+            exit: 500
+          }}
+          classNames={"timer"}
+          unmountOnExit
+          exit
           >
           <div>
             { content }

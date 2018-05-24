@@ -217,6 +217,8 @@ const styles = {
     flex: 2,
     width: 400
   }
+
+  
 }
 
 export default App;
