@@ -48,6 +48,8 @@ export default class DeviceRow extends Component {
     }.bind(this) , __DEVICE_CHECK_TIMEOUT__)
   }
 
+
+
   render() {
     var highlight;
     switch(this.state.live) {

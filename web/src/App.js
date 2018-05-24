@@ -55,9 +55,11 @@ class App extends Component {
     super(props)
     this.state = {
       devices: [],
-      targets: []
+      targets: [],
+      timers: __DUMMY_TIMERS__
     }
     this.scan = this.scan.bind(this)
+    this.killTimer = this.killTimer.bind(this)
   }
 
   componentDidMount() {
@@ -89,6 +91,16 @@ class App extends Component {
       console.log(error)
       console.log("Scan unsuccessful")
     })
+  }
+
+  killTimer(index) {
+    this.state.timers.splice(index, 1)
+    console.log(this.state.timers)
+    this.setState({ timers: this.state.timers})
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    return true
   }
 
   render() {
@@ -143,11 +155,10 @@ class App extends Component {
                 contentStyle={styles.scrollContent}
                 horizontal={false}
                 >
-                <TransitionGroup>
-                  { __DUMMY_TIMERS__.sort(function(a, b) { return a.delay - b.delay } ).map(
-                    (item, index) => <TimerRow {...item} key={item.name} />
-                  )}
-                </TransitionGroup>
+                { 
+                  this.state.timers.sort(function(a, b) { return a.delay - b.delay } ).map(
+                  (item, index) => <TimerRow {...item} key={item.name} killer={() => this.killTimer(index)} />
+                )}
 
               </ScrollArea>
               
@@ -218,7 +229,7 @@ const styles = {
     width: 400
   }
 
-  
+
 }
 
 export default App;
