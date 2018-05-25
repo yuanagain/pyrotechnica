@@ -14,6 +14,7 @@ import FlipMove from 'react-flip-move';
 import ScrollArea from 'react-scrollbar'
 import "react-circular-progressbar/dist/styles.css";
 import { __DUMMY_TIMERS__ } from './helpers/filler.js'
+import TimerList from './components/TimerList.js'
 
 // https://emeraldcoastbyowner.com/blogimages/blog31508863253_gulf-breeze2.jpg
 
@@ -153,6 +154,7 @@ class App extends Component {
                 contentStyle={styles.scrollContent}
                 horizontal={false}
                 >
+                  <TimerList/>
                   <FlipMove
                     enterAnimation="accordionVertical"
                     leaveAnimation="accordionVertical"

@@ -1,6 +1,7 @@
-import { ADD_ARTICLE } from "../constants/action-types";
+import { ADD_ARTICLE, ADD_TIMER } from "../constants/action-types";
 const initialState = {
-  articles: []
+  articles: [],
+  timers: []
 };
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -8,6 +9,10 @@ const rootReducer = (state = initialState, action) => {
 		// Using concat(), slice(), and …spread for arrays
 		// Using Object.assign() and …spread for objects
       return { ...state, articles: [...state.articles, action.payload] };
+
+    case ADD_TIMER:
+      return { ...state, timers: [...state.timers, action.payload] };
+
     default:
       return state;
   }

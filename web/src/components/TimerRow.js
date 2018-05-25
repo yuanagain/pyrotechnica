@@ -60,7 +60,7 @@ export default class TimerRow extends Component {
   }
 
   die() {
-    this.props.killer()
+    // this.props.killer()
   }
 
   render() {
