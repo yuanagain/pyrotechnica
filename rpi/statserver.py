@@ -9,11 +9,9 @@ app = Flask(__name__)
 def home():
     return 'System Stats!'
 
-@app.route('/cpu')
 def cpu():
     return str(psutil.cpu_percent()) + '%'
 
-@app.route('/memory')
 def memory():
     memory = psutil.virtual_memory()
     # Divide from Bytes -> KB -> MB
@@ -21,7 +19,6 @@ def memory():
     total = round(memory.total/1024.0/1024.0,1)
     return str(available) + 'MB free / ' + str(total) + 'MB total ( ' + str(memory.percent) + '% )'
 
-@app.route('/disk')
 def disk():
     disk = psutil.disk_usage('/')
     # Divide from Bytes -> KB -> MB -> GB
