@@ -3,10 +3,6 @@
 
 import React, { Component } from 'react';
 import axios from 'axios';
-import {
-  CSSTransition,
-  TransitionGroup,
-} from 'react-transition-group';
 import { White, Red, PrimaryColor } from '../global/Colors.js'
 import { Line, Circle } from 'rc-progress';
 // import { Progress } from 'antd';
@@ -30,19 +26,11 @@ export default class TimerRow extends Component {
     }
     // Amount by which to increment progress for each frame refresh
     this.delta = __FRAME_DURATION__ / this.props.duration 
-
-    // bindings
-    this.renderContent = this.renderContent.bind(this)
-    this.timeout = this.timeout.bind(this)
-    this.increment = this.increment.bind(this)
-    this.die = this.die.bind(this)
-    this.startShrink = this.startShrink.bind(this)
-    this.shrink = this.shrink.bind(this)
   }
 
   componentDidMount() {
     this.timeout()
-    this.interval = setInterval(this.increment, __FRAME_DURATION__)
+    this.interval = setInterval(() => this.increment(), __FRAME_DURATION__)
   }
 
   increment() {
@@ -72,50 +60,30 @@ export default class TimerRow extends Component {
   }
 
   die() {
-    // this.setState({lifecycle: 'dead'})
-    setTimeout(
-      () => { this.startShrink(), this.setState({lifecycle: 'alive'}) }, 
-      1000
-    )
-  }
-
-  startShrink() {
-    this.props.killer(this.props.name)
-    this.shrinkInterval = setInterval(this.shrink(), __DEATH_FRAME_DURATION__)
-  }
-
-  shrink() {
-    if (this.state.deathCountdown > 0) {
-      this.setState({ deathCountdown: Math.max(this.state.deathCountdown - __DEATH_FRAME_DURATION__, 0) })
-    }
-    else {
-      clearInterval(this.shrinkInterval)
-    }
+    this.props.killer()
   }
 
   render() {
-    var content;
-
     if (this.state.lifecycle != 'nan') {
-      content = this.renderContent()
+      return this.renderContent()
     }
 
-    return (
-        <CSSTransition
-          in={this.state.lifecycle != 'dead'}
-          timeout={{
-            enter: 300,
-            exit: 500
-          }}
-          classNames={"timer"}
-          unmountOnExit
-          exit
-          >
-          <div>
-            { content }
-          </div>
-        </CSSTransition>
-      )
+    // return (
+    //     <CSSTransition
+    //       in={this.state.lifecycle != 'dead'}
+    //       timeout={{
+    //         enter: 300,
+    //         exit: 500
+    //       }}
+    //       classNames={"timer"}
+    //       unmountOnExit
+    //       exit
+    //       >
+    //       <div>
+    //         { content }
+    //       </div>
+    //     </CSSTransition>
+    //   )
   }
 
   renderContent() {
