@@ -99,6 +99,7 @@ class App extends Component {
     this.setState({ timers: this.state.timers})
   }
 
+
   shouldComponentUpdate(nextProps, nextState) {
     return true
   }
