@@ -1,4 +1,5 @@
 import psutil
+import time
 
 from flask import Flask
 
@@ -13,6 +14,9 @@ def getMAC(interface='eth0'):
   except:
     str = "00:00:00:00:00:00"
   return str[0:17]
+@app.route('/')
+def timestamp()
+	print datetime.datetime.utcnow().timestamp()
 def cpu():
     return str(psutil.cpu_percent()) + '%'
 def memory():
