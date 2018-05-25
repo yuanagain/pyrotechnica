@@ -17,7 +17,7 @@ def getMAC(interface='eth0'):
 @app.route('/timestamp')
 def timestamp():
     ts = time.time()
-    print ts
+    return ts
 def cpu():
     return str(psutil.cpu_percent()) + '%'
 def memory():
