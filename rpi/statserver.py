@@ -15,7 +15,7 @@ def getMAC(interface='eth0'):
     str = "00:00:00:00:00:00"
   return str[0:17]
 @app.route('/')
-def timestamp()
+def timestamp():
 	print datetime.datetime.utcnow().timestamp()
 def cpu():
     return str(psutil.cpu_percent()) + '%'
