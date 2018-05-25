@@ -14,7 +14,7 @@ def getMAC(interface='eth0'):
   except:
     str = "00:00:00:00:00:00"
   return str[0:17]
-@app.route('/')
+@app.route('/timestamp')
 def timestamp():
 	print datetime.datetime.utcnow().timestamp()
 def cpu():
