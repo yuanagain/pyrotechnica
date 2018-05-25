@@ -10,13 +10,10 @@ import { __COMPONENT_STYLES__ } from './global/Styles.js'
 import { White, PrimaryColor } from './global/Colors.js'
 import DeviceRow from './components/DeviceRow.js'
 import TimerRow from './components/TimerRow.js'
+import FlipMove from 'react-flip-move';
 import ScrollArea from 'react-scrollbar'
 import "react-circular-progressbar/dist/styles.css";
 import { __DUMMY_TIMERS__ } from './helpers/filler.js'
-import {
-  CSSTransition,
-  TransitionGroup,
-} from 'react-transition-group';
 
 // https://emeraldcoastbyowner.com/blogimages/blog31508863253_gulf-breeze2.jpg
 
@@ -156,11 +153,16 @@ class App extends Component {
                 contentStyle={styles.scrollContent}
                 horizontal={false}
                 >
-                { 
-                  this.state.timers.sort(function(a, b) { return a.delay - b.delay } ).map(
-                  (item, index) => <TimerRow {...item} key={item.name} killer={() => this.killTimer(index)} />
-                )}
-
+                  <FlipMove
+                    enterAnimation="accordionVertical"
+                    leaveAnimation="accordionVertical"
+                    duration={2000}
+                  >
+                    {
+                    this.state.timers.sort(function(a, b) { return a.delay - b.delay } ).map(
+                    (item, index) => <TimerRow {...item} key={item.name} killer={() => this.killTimer(index)} />
+                    )}
+                  </FlipMove>
               </ScrollArea>
               
             </div>
