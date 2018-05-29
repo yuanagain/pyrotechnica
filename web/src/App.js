@@ -16,6 +16,9 @@ import "react-circular-progressbar/dist/styles.css";
 import { __DUMMY_TIMERS__ } from './helpers/filler.js'
 import TimerList from './components/TimerList.js'
 
+// REDUX
+import { connect } from "react-redux";
+import { addTimer } from "./js/actions/index";
 // https://emeraldcoastbyowner.com/blogimages/blog31508863253_gulf-breeze2.jpg
 
 const __BACKGROUND_IMAGE_URL__ = "https://www.gannett-cdn.com/-mm-/c5cb33fa1f894aa6e0b5df97512504daf89995ab/c=0-803-3456-2756&r=x1683&c=3200x1680/local/-/media/2017/04/04/NJGroup/AsburyPark/636269042204056588-fireworks-freehold-raceway-2016-Kenny-Murray.jpg"
@@ -97,7 +100,6 @@ class App extends Component {
     this.setState({ timers: this.state.timers})
   }
 
-
   shouldComponentUpdate(nextProps, nextState) {
     return true
   }
@@ -147,6 +149,7 @@ class App extends Component {
               <h1 style={styles.whiteText}>
                 Body
               </h1>
+              <NewEvent/>
 
               <ScrollArea
                 speed={0.8}
@@ -165,6 +168,46 @@ class App extends Component {
     );
   }
 }
+
+const mapDispatchToProps = dispatch => {
+  return {
+    addTimer: timer => dispatch(addTimer(timer))
+  };
+};
+
+class ConnectedNewEvent extends Component {
+  createNewEvent() {
+    console.log("Creating new event")
+    var timer = {
+      name: 'New Timer', 
+      duration: 0,
+      delay: 0,
+      latency: 0,
+      fuse: 0
+    }
+    this.props.addTimer(timer);
+  }
+
+  render() {
+    return (
+      <a  
+        textDecoration="none" 
+          style={styles.cleanLink} 
+          href='#' 
+          onClick={ 
+            () => this.createNewEvent() 
+          }>
+        <h2 
+          style={styles.whiteText}>
+          New Event
+        </h2>
+      </a>
+      )
+
+  }
+}
+
+const NewEvent = connect(null, mapDispatchToProps)(ConnectedNewEvent);
 
 /*
                   <FlipMove

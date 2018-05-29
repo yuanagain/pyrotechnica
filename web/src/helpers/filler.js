@@ -6,7 +6,9 @@ import { addTimer } from '../js/actions'
 
 export const FillTimers = () => {
 	__DUMMY_TIMERS__.map((item, index ) => {
-		store.dispatch( addTimer(item) )
+		store.dispatch( 
+			addTimer(item) 
+		)
 	})
 }
 

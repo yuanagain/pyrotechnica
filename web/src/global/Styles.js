@@ -32,6 +32,7 @@ export const __COMPONENT_STYLES__ = {
     color: White(1),
     fontSize: 45,
     marginTop: 0,    
-    marginBottom: 0,  
+    marginBottom: 0, 
+    alignText: 'start' 
   }
 }
