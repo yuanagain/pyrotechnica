@@ -154,7 +154,19 @@ class App extends Component {
                 contentStyle={styles.scrollContent}
                 horizontal={false}
                 >
-                  <TimerList/>
+                <TimerList/>
+
+              </ScrollArea>
+              
+            </div>
+          </div>
+        </BackgroundImage>
+      </div>
+    );
+  }
+}
+
+/*
                   <FlipMove
                     enterAnimation="accordionVertical"
                     leaveAnimation="accordionVertical"
@@ -165,15 +177,7 @@ class App extends Component {
                     (item, index) => <TimerRow {...item} key={item.name} killer={() => this.killTimer(index)} />
                     )}
                   </FlipMove>
-              </ScrollArea>
-              
-            </div>
-          </div>
-        </BackgroundImage>
-      </div>
-    );
-  }
-}
+*/
 
 const styles = {
   container: {

@@ -1,4 +1,4 @@
-import { ADD_ARTICLE, ADD_TIMER } from "../constants/action-types";
+import { ADD_ARTICLE, ADD_TIMER } from "../../constants/action-types";
 const initialState = {
   articles: [],
   timers: []

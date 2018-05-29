@@ -1,6 +1,15 @@
 // filler.js
 // Yuan Wang
 
+import store from '../js/store'
+import { addTimer } from '../js/actions'
+
+export const FillTimers = () => {
+	__DUMMY_TIMERS__.map((item, index ) => {
+		store.dispatch( addTimer(item) )
+	})
+}
+
 export const __DUMMY_TIMERS__ = [
 	{
 		name: 'Timer 1', 

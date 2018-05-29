@@ -20,10 +20,12 @@ const mapStateToProps = state => {
 const ConnectedList = ({ timers }) => (
   <div>
     {timers.map((item, index) => (
-      <TimerRow {...item} key={index} />
+      <h1>item.name</h1>
     ))}
   </div>
 );
+
+// <TimerRow {...item} key={index} />
 
 const TimerList = connect(mapStateToProps)(ConnectedList);
 
