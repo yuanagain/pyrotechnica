@@ -1,8 +1,16 @@
-import { ADD_ARTICLE, ADD_TIMER } from "../../constants/action-types";
+import { 
+  ADD_ARTICLE, 
+  ADD_TIMER, 
+  ELAPSE_TIME,
+  UPDATE_DEVICES } from "../../constants/action-types";
+
 const initialState = {
   articles: [],
-  timers: []
+  timers: [],
+  time: 0,
+  devices: []
 };
+
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_ARTICLE:
@@ -12,6 +20,12 @@ const rootReducer = (state = initialState, action) => {
 
     case ADD_TIMER:
       return { ...state, timers: [...state.timers, action.payload] };
+
+    case ELAPSE_TIME:
+      return {...state, time: state.time + action.dt }
+
+    case UPDATE_DEVICES:
+      return {...state, devices: action.devices}
 
     default:
       return state;

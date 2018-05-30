@@ -8,13 +8,17 @@ import './App.css';
 import BackgroundImage from './components/BackgroundImage.js'
 import { __COMPONENT_STYLES__ } from './global/Styles.js'
 import { White, PrimaryColor } from './global/Colors.js'
-import DeviceRow from './components/DeviceRow.js'
+
 import TimerRow from './components/TimerRow.js'
 import FlipMove from 'react-flip-move';
 import ScrollArea from 'react-scrollbar'
 import "react-circular-progressbar/dist/styles.css";
+
+
 import { __DUMMY_TIMERS__ } from './helpers/filler.js'
 import TimerList from './components/TimerList.js'
+import Controls from './components/Controls.js'
+import DeviceList from './components/DeviceList.js'
 
 // REDUX
 import { connect } from "react-redux";
@@ -85,7 +89,7 @@ class App extends Component {
     .then(function (response) {
       console.log("Scan successful")
       var devices = response.data
-      this.setState({ devices }, this.checkDevices)
+      this.setState({ devices })
 
     }.bind(this))
     .catch(function (error) {
@@ -121,34 +125,16 @@ class App extends Component {
           <div style={styles.body}>
             <div style={styles.sidebar}>  
               <h1 style={styles.whiteText}>
-                Unit 1
+                Devices
               </h1>
               <a  textDecoration="none" 
                   style={styles.cleanLink} 
                   href='#' onClick={this.scan}>
-                <h2 
-                  style={styles.whiteText}>
-                  Scan
-                </h2>
-
-                <h4 style={styles.whiteText}>
-                  {"Number of Devices: " + this.state.devices.length}
-                </h4>
-                <br/>
-
-                {
-                  this.state.devices.map( (item, index) =>
-                      <DeviceRow
-                        device={item}
-                        key={index}/>
-                  )
-                }
+                <DeviceList/>
               </a>
             </div>
             <div style={styles.mainbody}>
-              <h1 style={styles.whiteText}>
-                Body
-              </h1>
+              <Controls/>
               <NewEvent/>
 
               <ScrollArea
@@ -180,8 +166,8 @@ class ConnectedNewEvent extends Component {
     console.log("Creating new event")
     var timer = {
       name: 'New Timer', 
-      duration: 0,
-      delay: 0,
+      duration: 10000,
+      start: 200,
       latency: 0,
       fuse: 0
     }

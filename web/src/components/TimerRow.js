@@ -9,12 +9,17 @@ import { Line, Circle } from 'rc-progress';
 import CircularProgressbar from 'react-circular-progressbar';
 import "react-circular-progressbar/dist/styles.css";
 import { formatNumber } from '../helpers/format.js'
+import { connect } from "react-redux";
 
 const __FRAME_DURATION__ = 100 
 const __DEATH_TIME__ = 500
 const __DEATH_FRAME_DURATION__ = 50
 
-export default class TimerRow extends Component {
+const mapStateToProps = state => {
+  return { time: state.time };
+};
+
+class ConnectedTimerRow extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -99,7 +104,11 @@ export default class TimerRow extends Component {
       height: '200px'
     };
     
-    var percentage = this.state.progress * 100
+    var percentage = Math.min(
+      Math.max(
+        100 * (this.props.time - this.props.start ) / this.props.duration , 
+        0), 
+      100);
 
     return (
     	<div 
@@ -148,9 +157,9 @@ export default class TimerRow extends Component {
   }
 }
 
-TimerRow.defaultProps = {
+ConnectedTimerRow.defaultProps = {
 	duration: 5000,
-	delay: 2000
+	start: 2000
 }
 
 const styles = {
@@ -181,3 +190,7 @@ const styles = {
     textAlign: 'start'
   }
 }
+
+const TimerRow = connect(mapStateToProps)(ConnectedTimerRow);
+
+export default TimerRow
