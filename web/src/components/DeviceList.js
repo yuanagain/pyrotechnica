@@ -7,6 +7,7 @@ import axios from 'axios';
 import { updateDevices } from "../js/actions/index";
 import DeviceRow from '../components/DeviceRow.js'
 
+
 const mapStateToProps = state => {
   return { 
   	devices: state.devices,

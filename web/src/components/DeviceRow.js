@@ -6,6 +6,7 @@ import axios from 'axios'
 import { White, PrimaryColor } from '../global/Colors.js'
 import { __PYRO_PORT__, __DEVICE_CHECK_TIMEOUT__ } from '../global/config.js'
 
+
 export default class DeviceRow extends Component {
   constructor(props) {
     super(props)

@@ -10,19 +10,24 @@ import CircularProgressbar from 'react-circular-progressbar';
 import "react-circular-progressbar/dist/styles.css";
 import { formatNumber } from '../helpers/format.js'
 import { connect } from "react-redux";
+import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 
 const __FRAME_DURATION__ = 100 
 const __DEATH_TIME__ = 500
 const __DEATH_FRAME_DURATION__ = 50
 
 const mapStateToProps = state => {
-  return { time: state.time };
+  return { 
+    devices: state.devices,
+    time: state.time 
+  };
 };
 
 class ConnectedTimerRow extends Component {
   constructor(props) {
     super(props)
     this.state = {
+      dropdownOpen: false,
       live: 0,
       progress: 0.0,
       lifecycle: 'live',
@@ -31,7 +36,16 @@ class ConnectedTimerRow extends Component {
     }
     // Amount by which to increment progress for each frame refresh
     this.delta = __FRAME_DURATION__ / this.props.duration 
+
+    this.toggle = this.toggle.bind(this)
   }
+
+  toggle() {
+    this.setState(prevState => ({
+      dropdownOpen: !prevState.dropdownOpen
+    }));
+  }
+
 
   componentDidMount() {
     this.timeout()
@@ -139,7 +153,11 @@ class ConnectedTimerRow extends Component {
               },
             }} />
 	      </div>
-        <div style={styles.pane}>
+        <div 
+          style={{
+            ...styles.pane,
+            ...styles.bodyPane
+          }}>
 		      <h1 
 		        style={{
 		          ...styles.whiteText,
@@ -150,6 +168,18 @@ class ConnectedTimerRow extends Component {
 		        {this.props.name}
 
 		      </h1>
+          <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
+            <DropdownToggle caret>
+              Device Selection
+            </DropdownToggle>
+            <DropdownMenu>
+              {
+                this.props.devices.map(
+                  (item, index) => <DropdownItem key={index}>{item.ip}</DropdownItem>
+                )
+              }
+            </DropdownMenu>
+          </Dropdown>
 	      </div>
 	    </div>
     )
@@ -185,6 +215,12 @@ const styles = {
     paddingLeft: 30,
 		flex: 2
 	},
+  bodyPane: {
+    flexDirection: 'column',
+    display: 'flex',
+    alignItems: 'flex-start',
+    flex: 1
+  },
   whiteText: {
     color: 'white',
     textAlign: 'start'
