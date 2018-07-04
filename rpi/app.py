@@ -20,16 +20,16 @@ def pyratechnica():
 
 @app.route('/fire')
 def fireitup():
-	firethisbitch()
-	print("Fired this device")
+    firethisbitch()
+    print("Fired this device")
     return 'fired'
 
 
 @app.route('/pong')
 def pong():
-	arg1 = request.args.get('arg1')
-	out = helperA(int(arg1))
-	return "Hello" + str(out)
+    arg1 = request.args.get('arg1')
+    out = helperA(int(arg1))
+    return "Hello" + str(out)
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0')
