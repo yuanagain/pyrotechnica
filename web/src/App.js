@@ -164,7 +164,10 @@ class App extends Component {
           background={"url(" + __BACKGROUND_IMAGE_URL__ + ")"}>
           
           <div style={styles.body}>
+
             <div style={styles.sidebar}>
+              <br/>
+              <br/>
               <Header/>
               <div style={styles.hline} />  
               <h1 style={styles.whiteText}>
