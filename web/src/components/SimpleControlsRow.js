@@ -56,7 +56,7 @@ export default class SimpleControlsRow extends Component {
 
   fire() {
     var ip = this.props.device.ip
-    var dest = ip + ":5000/fire"
+    var dest = 'http://' + ip + ":5000/fire"
     var target = 'test'
     console.log("Firing at", dest)
     axios.get(dest, {
@@ -95,7 +95,7 @@ export default class SimpleControlsRow extends Component {
         break;
 
       case 1:
-        highlight = PrimaryColor(1)
+        highlight = White(1)
         break;
 
       default:
@@ -109,7 +109,7 @@ export default class SimpleControlsRow extends Component {
         break;
 
       case 'armed': 
-        containerHighlight = White(0.2)
+        containerHighlight = White(0.3)
         break;
 
       case 'unsure': 
