@@ -116,6 +116,10 @@ export default class SimpleControlsRow extends Component {
         containerHighlight = Yellow(0.2)
         break;
 
+      case 'cool': 
+        containerHighlight = White(0.3)
+        break;
+
       default: 
         containerHighlight = White(0.1)
     }
