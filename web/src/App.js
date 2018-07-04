@@ -20,6 +20,9 @@ import TimerList from './components/TimerList.js'
 import Controls from './components/Controls.js'
 import DeviceList from './components/DeviceList.js'
 
+import { Tab, Tabs } from 'react-bootstrap'
+import SimpleControls from './components/SimpleControls.js'
+
 // REDUX
 import { connect } from "react-redux";
 import { addTimer } from "./js/actions/index";
@@ -61,10 +64,13 @@ class App extends Component {
     this.state = {
       devices: [],
       targets: [],
-      timers: __DUMMY_TIMERS__
+      timers: __DUMMY_TIMERS__,
+      key: 1
     }
     this.scan = this.scan.bind(this)
     this.killTimer = this.killTimer.bind(this)
+    this.renderTabContent = this.renderTabContent.bind(this)
+    this.handleSelect = this.handleSelect.bind(this)
   }
 
   componentDidMount() {
@@ -108,6 +114,42 @@ class App extends Component {
     return true
   }
 
+  renderTabContent() {
+    console.log(this.state.key)
+    switch(this.state.key) {
+      case 2:
+        return (
+          <div>
+            <Controls/>
+            <NewEvent/>
+            <ScrollArea
+              speed={0.8}
+              style={styles.scroll}
+              contentStyle={styles.scrollContent}
+              horizontal={false}
+              >
+              <TimerList/>
+
+            </ScrollArea>
+          </div>
+        )
+        break;
+
+      case 1:
+        return (
+          <SimpleControls/>
+        )
+        break;
+
+      default: 
+        return (<div/>)
+    }
+  }
+  handleSelect(key) {
+    // alert(`selected ${key}`);
+    this.setState({ key });
+  }
+
   render() {
 
     return (
@@ -120,10 +162,11 @@ class App extends Component {
             ...styles.content
           }}
           background={"url(" + __BACKGROUND_IMAGE_URL__ + ")"}>
-          <Header/>
-          <div style={styles.hline} />
+          
           <div style={styles.body}>
-            <div style={styles.sidebar}>  
+            <div style={styles.sidebar}>
+              <Header/>
+              <div style={styles.hline} />  
               <h1 style={styles.whiteText}>
                 Devices
               </h1>
@@ -132,20 +175,28 @@ class App extends Component {
                   href='#' onClick={this.scan}>
                 <DeviceList/>
               </a>
+              
             </div>
             <div style={styles.mainbody}>
-              <Controls/>
-              <NewEvent/>
 
-              <ScrollArea
-                speed={0.8}
-                style={styles.scroll}
-                contentStyle={styles.scrollContent}
-                horizontal={false}
+              <Tabs
+                activeKey={this.state.key}
+                onSelect={this.handleSelect}
+                id="controlled-tab-example"
+                style={styles.tabs} 
                 >
-                <TimerList/>
-
-              </ScrollArea>
+                <Tab eventKey={1} title="Manual Control">
+                
+                </Tab>
+                <Tab eventKey={2} title="Event Queue">
+                  
+                </Tab>
+                <Tab eventKey={3} title="Settings">
+                  
+                </Tab>
+              </Tabs>
+              <br/>
+              { this.renderTabContent() }
               
             </div>
           </div>
@@ -230,13 +281,32 @@ const styles = {
     flex: 1,
     alignItems: 'flex-start',
     minWidth: 300,
+    paddingTop: 20,
     display: 'flex',
   },
   mainbody: {
     flexDirection: 'column',
     flex: 4,
     display: 'flex', 
+    padding: 26,
+    backgroundColor: White(0.0)
 
+  },
+  tab1container: {
+    flex: 0,
+    display: 'absolute',
+    justifyContent: 'flex-start',
+    flexDirection: 'column',
+    alignItems: 'flex-start',
+    backgroundColor: White(0),
+    minHeight: 400,
+    minWidth: 400,
+    height: 400,
+    width: 400,
+    zIndex: 4,
+  },
+  tabs: {
+    backgroundColor: White(0.0)
   },
   scroll: {
     maxHeight: '70vh',
@@ -264,7 +334,9 @@ const styles = {
     backgroundColor: White(1),
     maxHeight: 1,
     flex: 2,
-    width: 400
+    width: 300,
+    marginTop: 10,
+    marginBottom: 10,
   }
 
 

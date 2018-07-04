@@ -1,7 +1,7 @@
 import React, {ReactDOM} from "react";
 import { render } from "react-dom";
 import './index.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
+// import 'bootstrap/dist/css/bootstrap.min.css';
 
 import index from "./js/index"
 

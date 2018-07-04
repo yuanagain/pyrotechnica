@@ -54,11 +54,11 @@ class ConnectedDeviceList extends Component {
 			<div>
 				<h2 
 		      style={styles.whiteText}>
-		      Scan
+		      
 		    </h2>
 
 		    <h4 style={styles.whiteText}>
-		      {"Number of Devices: " + this.props.devices.length}
+		      {"Count: " + this.props.devices.length}
 		    </h4>
 		    <br/>
 

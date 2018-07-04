@@ -17,3 +17,7 @@ export function Red(opacity) {
 	return 'rgba(255, 102, 0, ' + String(opacity)  + ')'
 }
 
+
+export function Yellow(opacity) {
+	return 'rgba(255, 240, 40, ' + String(opacity)  + ')'
+}

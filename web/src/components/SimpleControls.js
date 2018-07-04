@@ -4,6 +4,13 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { elapseTime } from "../js/actions/index";
+import SimpleControlsRow from '../components/SimpleControlsRow.js'
+
+const mapStateToProps = state => {
+  return { 
+    devices: state.devices,
+  };
+};
 
 const mapDispatchToProps = dispatch => {
   return {
@@ -11,7 +18,7 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-class ConnectedControls extends Component {
+class ConnectedSimpleControls extends Component {
   constructor(props) {
     super(props) 
     this.state = {
@@ -37,18 +44,15 @@ class ConnectedControls extends Component {
   render() {
     console.log("rendering controls")
     return (
-      <a  
-        textDecoration="none" 
-          style={styles.cleanLink} 
-          href='#' 
-          onClick={ 
-            () => this.togglePlay() 
-          }>
-        <h2 
-          style={styles.whiteText}>
-          {this.state.paused ? "Play" : "Pause"}
-        </h2>
-      </a>
+      <div>
+        {
+          this.props.devices.map( (item, index) =>
+            <SimpleControlsRow
+              device={item}
+              key={index}/>
+          )
+        }
+      </div>
       )
   }
 }
@@ -63,6 +67,6 @@ const styles = {
   }
 }
 
-const Controls = connect(null, mapDispatchToProps)(ConnectedControls);
+const SimpleControls = connect(mapStateToProps, mapDispatchToProps)(ConnectedSimpleControls);
 
-export default Controls
+export default SimpleControls
