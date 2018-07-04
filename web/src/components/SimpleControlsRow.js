@@ -56,7 +56,7 @@ export default class SimpleControlsRow extends Component {
 
   fire() {
     var ip = this.props.device.ip
-    var dest = ip + ":5000"
+    var dest = ip + ":5000/fire"
     var target = 'test'
     console.log("Firing at", dest)
     axios.get(dest, {
