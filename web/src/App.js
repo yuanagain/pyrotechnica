@@ -166,8 +166,7 @@ class App extends Component {
           <div style={styles.body}>
 
             <div style={styles.sidebar}>
-              <br/>
-              <br/>
+            
               <Header/>
               <div style={styles.hline} />  
               <h1 style={styles.whiteText}>
